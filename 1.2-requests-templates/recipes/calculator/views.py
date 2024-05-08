@@ -16,15 +16,45 @@ DATA = {
         'сыр, ломтик': 1,
         'помидор, ломтик': 1,
     },
-    # можете добавить свои рецепты ;)
-}
 
-# Напишите ваш обработчик. Используйте DATA как источник данных
-# Результат - render(request, 'calculator/index.html', context)
-# В качестве контекста должен быть передан словарь с рецептом:
-# context = {
-#   'recipe': {
-#     'ингредиент1': количество1,
-#     'ингредиент2': количество2,
-#   }
-# }
+}
+def recipe_view(request, recipe):
+    if recipe == "omlet":
+        result = omlet_func()
+    elif recipe == "pasta":
+        result = pasta_func()
+    elif recipe == "buter":
+        result = buter_func()
+
+        def omlet_func(request):
+            context = {
+                'recipe': {
+                    'ingredient1': amount1,
+                    'ingredient2': amount2,
+                    'ingredient3': amount3,
+                }
+            }
+            return render(request, 'calculator/index.html', context)
+
+
+        def pasta_func(request):
+            context = {
+                'recipe': {
+                    'ingredient1': amount1,
+                    'ingredient2': amount2,
+                }
+            }
+            return render(request, 'calculator/index.html', context)
+
+        def buter_func(request):
+            context = {
+                'recipe': {
+                    'ingredient1': amount1,
+                    'ingredient2': amount2,
+                    'ingredient3': amount3,
+                    'ingredient4': amount4
+                }
+            }
+            return render(request, 'calculator/index.html', context)
+
+
