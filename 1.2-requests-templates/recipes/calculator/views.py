@@ -21,9 +21,9 @@ DATA = {
 
 
 def dish_view(request, dish):
-    servings = request.GET.get('servings', 5)
+    servings = int(request.GET.get('servings', 5))
     recipe = {}
-    for key, value in DATA.get(dish).items():
-        recipe[key] = value * int(servings)
+    for ingredient, amount in DATA.get(dish).items():
+        recipe[ingredient] = amount * servings
     context = dict.fromkeys(['recipe'], recipe)
     return render(request, 'calculator/index.html', context)
