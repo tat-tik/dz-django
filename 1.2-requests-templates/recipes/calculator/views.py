@@ -18,43 +18,12 @@ DATA = {
     },
 
 }
-def recipe_view(request, recipe):
-    if recipe == "omlet":
-        result = omlet_func()
-    elif recipe == "pasta":
-        result = pasta_func()
-    elif recipe == "buter":
-        result = buter_func()
-
-        def omlet_func(request):
-            context = {
-                'recipe': {
-                    'ingredient1': amount1,
-                    'ingredient2': amount2,
-                    'ingredient3': amount3,
-                }
-            }
-            return render(request, 'calculator/index.html', context)
 
 
-        def pasta_func(request):
-            context = {
-                'recipe': {
-                    'ingredient1': amount1,
-                    'ingredient2': amount2,
-                }
-            }
-            return render(request, 'calculator/index.html', context)
-
-        def buter_func(request):
-            context = {
-                'recipe': {
-                    'ingredient1': amount1,
-                    'ingredient2': amount2,
-                    'ingredient3': amount3,
-                    'ingredient4': amount4
-                }
-            }
-            return render(request, 'calculator/index.html', context)
-
-
+def dish_view(request, dish):
+    servings = request.GET.get('servings', 5)
+    recipe = {}
+    for key, value in DATA.get(dish).items():
+        recipe[key] = value * int(servings)
+    context = dict.fromkeys(['recipe'], recipe)
+    return render(request, 'calculator/index.html', context)
