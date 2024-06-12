@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+
 from django.shortcuts import render, reverse
 
 import os
@@ -37,3 +37,4 @@ def workdir_view(request):
     # директории
     my_workdir = os.listdir()
     return HttpResponse('<br>'.join(my_workdir))
+
