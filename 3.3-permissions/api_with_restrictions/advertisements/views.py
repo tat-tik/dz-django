@@ -1,7 +1,9 @@
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.filters import SearchFilter
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.viewsets import ModelViewSet
 
 from api_with_restrictions.advertisements.models import Advertisement
+from api_with_restrictions.advertisements.permissions import IsOwner
 from api_with_restrictions.advertisements.serializers import AdvertisementSerializer
 
 
